@@ -17,7 +17,8 @@ loadmorebtn.addEventListener("click", function(e){
     }).then(response => response.json())
 
     .then(data => {
-        
+        const parsedata = JSON.parse(data)
+        console.log(parsedata)
     })
     
 });
