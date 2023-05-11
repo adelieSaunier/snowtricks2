@@ -280,12 +280,14 @@ class TricksController extends AbstractController
         if ($session->get('commentary_offset') >= $trick->getComments()->count()) {
             $showLoadMoreComments = false;
         }
+
         dump($session->get('commentary_offset'), $trick->getComments()->count(), $showLoadMoreComments);
 
         $jsonContent['showLoadMore'] = $showLoadMoreComments;
 
         $comments = $commentsRepository->findBy(['trick' => $trick], ['created_at' => 'DESC'], self::COMMENT_LIMIT, $offset);
         $payload = [];
+        
         foreach ($comments as $comment) {
             array_push($payload, [
                 'id' => $comment->getId(),
