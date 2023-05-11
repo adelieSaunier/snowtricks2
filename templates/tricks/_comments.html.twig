@@ -1,0 +1,16 @@
+<div class="row shadow-sm m-3" id="Commentary_{{ comment.id }}">
+	<div class="col col-1 mx-3">
+	<div class="row row-cols-1">
+		
+		{{ comment.user.nickname}}
+		<br>
+		{{ comment.createdAt|date('Y-m-d') }}
+		
+	</div>
+	</div>
+	<div class="col">
+	<div class="row">
+	</div>
+		<p>{{ comment.content }}</p>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+
+
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="{{path('app_main')}}" class="nav__logo">Snowtricks</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#tricks" class="nav__link active-link">
+                            <i class='bx bx-home-alt nav__icon'></i>
+                            <span class="nav__name">Tricks</span>
+                        </a>
+                    </li>
+                    {% if app.user %}
+                    
+                        <li class="nav__item">
+                            <a href="{{ path('figures_add') }}" class="nav__link">
+                                <i class='bx bx-user nav__icon'></i>
+                                <span class="nav__name"></i>Ajouter une figure</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item padd20rightResp">
+                            <a href="{{ path('app_logout') }}" class="nav__link">
+                                <i class='bx bx-book-alt nav__icon'></i>
+                                <span class="nav__name">Se déconnecter</span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="nav__item">
+                            <a href="{{ path('app_register') }}" class="nav__link">
+                                <i class='bx bx-briefcase-alt nav__icon'></i>
+                                <span class="nav__name">S'inscrire</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item padd20rightResp">
+                            <a href="{{ path('app_login') }}" class="nav__link">
+                                <i class='bx bx-message-square-detail nav__icon'></i>
+                                <span class="nav__name">Se connecter</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- Ici rajouter l'image du profil utilisateur -->
+            <img src="assets/img/perfil.png" alt="" class="nav__img">
+        </nav>
+    </header>
+

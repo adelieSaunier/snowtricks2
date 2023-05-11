@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+    
+{% endblock %}
+
+{% block body %}
+
+<div class="bgimg">
+    <div class="container">
+            
+        <section class="row">
+            <div class="padd100top ">
+                <h1 class="titlemain">SnowTricks</h1>
+                <h2 class="titlesecond">Bienvenue sur la plateforme de snowboard</h2>
+                
+            </div>
+            
+            {% for category in categories %}
+            <!--
+                <div class="btn-sized justify-content-end">
+                    <a class="btn btn-outline-warning " href="{{ path('categories_list', {slug: category.slug} )}}">{{ category.name}}</a>
+                </div>-->
+            {% endfor %}
+            
+            
+        </section>
+    </div>
+</div>
+<main class="container">    
+    <section class="row">
+        {% if app.user %}
+            <script>
+
+                const connecteduser = {{ app.user.id }};
+            </script>
+            {% else %}
+            <script>
+                const connecteduser = null;
+            </script>
+
+        {% endif %}
+        {% for trick in tricks %}
+            <div class="col-lg-3 mb-3 col-md-4 col-sm-6 " id="trick_{{ trick.id }}">
+                
+                <div class="trick-card-main">
+                    <div class="card h-100">
+                        <a href="{{ path('figures_details', {'slug': trick.slug}) }}">
+                            <img src="{{ asset('assets/uploads/main/mini/300x300-') ~ trick.mainimage }}" class="d-block w-100" alt="{{ trick.name }}">  
+                        </a>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center col">
+                                <small class="text-muted">{{ trick.name }}</small>
+                                {% if app.user %}
+                                    {{ include('tricks/_buttons.html.twig') }}
+                                    
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if app.user %}
+                {{ include('tricks/_deletemodal.html.twig') }}
+            {% endif %}    
+
+        {% endfor %}
+
+        <a href="{{ path('loadmore_tricks') }}" class="btn btn-dark my-3" id="loadmoretricks">Load More</a>
+
+        
+    
+    
+    </section>
+</main>       
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

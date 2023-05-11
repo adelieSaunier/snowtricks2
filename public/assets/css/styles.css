@@ -1,0 +1,104 @@
+.padd100top{
+    padding-top:100px;
+}
+
+.cardproductfixheight{
+    height: 200px;
+}
+
+.bgimg{
+    background-image: url(../imghome/moss2.jpg);
+    background-size:  cover;                      
+    background-repeat: no-repeat;
+    background-position: center center;  
+    height: 650px;
+    margin-bottom: 140px;
+}
+
+.btn-sized {
+    width: 150px;
+}
+
+#defaultimage {
+    z-index: 1;
+}
+
+.bgfooter{
+    background-color:rgb(75, 146, 143);
+}
+
+.mainimagedetail {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.trickname {
+    z-index : 2;
+    position : absolute;
+    font-size: 8rem;
+    color: rgb(188, 245, 226);
+    top: 85%;
+    left: 20%;
+}
+
+.titlemain {
+    padding-top: 90px;
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgb(75, 146, 143);
+}
+
+.titlesecond {
+    font-size: 2.2rem;
+    color: rgb(75, 146, 143);
+}
+
+#tricks_form_mainimage {
+    display: none;
+}
+
+#mainimage {
+    display: flex;
+}
+
+.inter {
+    
+    justify-content: flex-end; 
+}
+
+#boutonedit {
+    position : absolute;
+    z-index : 2;
+	padding: 4px;
+    background-color: aliceblue;
+}
+
+.grey-bg {
+    height: 400px;
+}
+
+.sized-img-prev {
+    height: 400px;
+    width: auto;
+}
+
+.pt70{
+    padding-top: 80px;
+}
+
+
+
+@media screen and (max-width: 767px) {
+    .titlemain {
+        padding-top: 50px;
+        font-size: 4.1rem;
+        font-weight: 600;
+        color: rgb(75, 146, 143);
+    }
+    
+    .titlesecond {
+        font-size: 1.1rem;
+        color: rgb(75, 146, 143);
+    }
+
+}

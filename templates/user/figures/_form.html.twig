@@ -1,0 +1,96 @@
+<!-- Avec ce fichier, je gère l'ajout et l'édition d'un produit
+ (include dans chaque template) -->
+
+{{ form_start(form) }}
+    {% if app.request.attributes.get('_route') == 'figures_edit' %}
+        <div id="boutonedit">
+            <label for="tricks_form_mainimage">
+                <img src="{{ asset('assets/icons/edit.png' ) }}" alt="bouton edition">
+            </label>
+        </div>
+        <div id="bgtohide" class="grey-bg ">
+            <img src="{{ asset('assets/uploads/main/' ~ trick.mainimage ) }}" alt="Image" width="600">
+        </div>
+        {{ form_row(form.mainimage) }}
+    {% else %}    
+        <div id="mainimage" >
+            
+            <div id="boutonedit">
+                <label for="tricks_form_mainimage">
+                    <img src="{{ asset('assets/icons/edit.png') }}" alt="bouton edition">
+                </label>
+            </div>
+           
+            <div id="bgtohide" class="grey-bg ">
+                <img id="img" src="{{ asset('assets/defaults/default-img.jpg') }}" class="sized-img-prev">
+            </div>
+            {{ form_widget(form.mainimage) }}
+
+            <div class="form-error">
+                {{ form_errors(form.mainimage) }}
+            </div>
+        </div>
+    {% endif %}
+    
+    
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.categories) }}
+        {# On affiche les images si on est en édition #}
+    {% if app.request.attributes.get('_route') == 'figures_edit' %}
+        <h2>Images</h2>
+        {% for image in trick.images %}
+            <div>
+                <img src="{{ asset('assets/uploads/tricks/mini/300x300-' ~ image.name ) }}" alt="Image" width="150">
+                <a href="{{ path('figures_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+        
+    {% endif %}
+
+
+    {{ form_row(form.images) }}
+
+    {# Si c'est une modification de figure #}
+    {% if app.request.attributes.get('_route') == 'figures_edit' %}
+        <h2>Vidéos</h2>
+
+        {% for video in trick.videos %}
+
+            
+            <div class="form-control">
+                
+                {{ form_label(form.videos[loop.index0]) }}
+                    <iframe width="215.5" height="121" src="{{ video.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <a href="{{ path('figures_delete_video', {id: video.id}) }}" data-type="video" data-delete data-token="{{ csrf_token('delete' ~ video.id) }}">Supprimer</a>
+                {{ form_widget(form.videos[loop.index0]) }}
+
+                <small>{# form_help(form.video) #}</small>
+
+                <div class="form-error">
+                    {{ form_errors(form.videos[loop.index0]) }}
+                </div>
+            </div>
+            
+        {% endfor %}
+
+        <input type="hidden" id="videosCount" name="videosCount" value="{{ form.videos|length }}">
+
+
+        <div class="videos" data-prototype="{{ form_row(form.videos.vars.prototype)|e('html_attr') }}">
+            <span></span>
+        </div>
+        
+    {% endif %}    
+    {# Si c'est un ajout de figure #}
+
+    {% if app.request.attributes.get('_route') == 'figures_add' %}
+        <div class="videos" data-prototype="{{ form_row(form.videos.vars.prototype)|e('html_attr') }}">
+            {{ form_row(form.videos) }}
+            <span></span>
+        </div>
+    {% endif %}
+    
+    
+    <button type="submit" class="btn btn-primary">{{ button_label | default('Enregistrer la figure') }}</button>
+{{ form_end(form) }}

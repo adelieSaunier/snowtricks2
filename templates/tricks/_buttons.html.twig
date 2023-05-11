@@ -1,0 +1,8 @@
+<div class="btn-group m-0" role="group">
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal_{{ trick.id }}">
+        <img src="{{ asset("assets/icons/trash.png") }}" alt="pen icon" height="16"/>
+    </button>
+    <a href="{{ path('figures_edit', {'id': trick.id}) }}" class="btn btn-sm btn-outline-secondary">
+        <img src="{{ asset("assets/icons/edit.png") }}" alt="pen icon" height="16"/>
+    </a>
+</div>

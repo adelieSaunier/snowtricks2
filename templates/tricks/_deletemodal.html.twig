@@ -1,0 +1,17 @@
+<div class="modal fade" id="modal_{{ trick.id }}" tabindex="-1" aria-labelledby="ModalLabel_{{ trick.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalLabel_{{ trick.id }}">{{ trick.name }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes vous certain de vouloir supprimer <strong>{{ trick.name }}</strong> ?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ path('figures_delete', {'id': trick.id}) }}" type="button" class="btn btn-dark">Supprimer</a>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
