@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: TricksRepository::class)]
 #[UniqueEntity(fields: ['name'], message: 'Attention, il existe déjà une figure avec ce nom')]
@@ -25,13 +27,23 @@ class Tricks
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)] 
+    #[Assert\Unique(message: 'Le nom de la figure existe déjà')]
+    #[Assert\NotBlank(message: 'Le nom de la figure ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le nom de la figure doit faire au moins {{ limit }} caractères',
+        maxMessage: 'Le nom de la figure doit faire au maximum {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'La description de la figure ne peut pas être vide')]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'tricks')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank(message: 'La catégorie de la figure doit être renseignée')]
     private ?Categories $categories = null;
 
     #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: Images::class, orphanRemoval: true, cascade: ['persist'])]
@@ -44,6 +56,7 @@ class Tricks
     private Collection $comments;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'L\'image à la une de la figure doit être renseignée')]
     private ?string $mainimage = null;
 
 

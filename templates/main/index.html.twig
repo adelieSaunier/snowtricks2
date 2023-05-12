@@ -29,10 +29,9 @@
     </div>
 </div>
 <main class="container">    
-    <section class="row">
+    <section id="tricks" class="row">
         {% if app.user %}
             <script>
-
                 const connecteduser = {{ app.user.id }};
             </script>
             {% else %}
@@ -79,6 +78,6 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="{{ asset('assets/js/loadmoretricks.js') }}" defer> </script>
+    <script src="{{ asset('assets/js/loadmoretricks.js') }}" defer></script>
 
 {% endblock %}
