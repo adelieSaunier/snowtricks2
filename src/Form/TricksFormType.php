@@ -31,7 +31,8 @@ class TricksFormType extends AbstractType
             ])
 
             ->add('name', options:[
-                'label'=> 'Nom'
+                'label'=> 'Nom',
+                //'required' => false
             ])
 
             ->add('description', options:[
@@ -78,6 +79,11 @@ class TricksFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Tricks::class,
+            'attr' => [
+                'novalidate' => 'novalidate', // comment me to reactivate the html5 validation!
+            ]
         ]);
+
+      
     }
 }

@@ -79,7 +79,7 @@ class PictureService
 
         // On crée le dossier de destination s'il n'existe pas
         if(!file_exists($path . '/mini/')){
-            mkdir($path . '/mini/', 0755, true);
+            mkdir($path . '/mini/', 0755, true );
         }
 
         // On stocke l'image recadrée

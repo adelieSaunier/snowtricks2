@@ -19,7 +19,7 @@ loadmorebtn.addEventListener("click", function(e){
     .then(data => {
         const parsedata = JSON.parse(data)
         console.log(parsedata)
-        console.log(parsedata[1])
+        //console.log(parsedata[1])
         //console.log(connecteduser)
         let tricksrow = document.getElementById("tricks")
 
@@ -63,7 +63,7 @@ loadmorebtn.addEventListener("click", function(e){
                                         <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal_${parsedata[i].id}">
                                             <img src="assets/icons/trash.png" alt="pen icon" height="16"/>
                                         </button>
-                                        <a href="/figures/modification/${parsedata[i].id}}) }}" class="btn btn-sm btn-outline-secondary">
+                                        <a href="/figures/modification/${parsedata[i].id}" class="btn btn-sm btn-outline-secondary">
                                             <img src="assets/icons/edit.png" alt="pen icon" height="16"/>
                                         </a>
                                     </div>

@@ -66,12 +66,14 @@
             
             <div class="row">
                 <h4>Vos commentaires</h4>
-                {%  for comment in comments %}
-                    
-                    <div class="col-12">
-                        <p>{{comment.content}}</p>
-                    </div>
-                {% endfor %}
+                <div id="comments">
+                    {%  for comment in comments %}
+                        
+                        <div class="col-12">
+                            <p>{{comment.content}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
                 
                 <a href="{{ path('figures_loadmore_comments', {id: trick.id}) }}" class="btn btn-dark my-3 " id="loadmorecomments">Load More</a>
             
